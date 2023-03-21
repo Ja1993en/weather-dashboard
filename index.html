@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,58 +10,69 @@
     <link rel="stylesheet" href="./assets/main.css">
     <title>Weather DashBoard</title>
 </head>
-<body  >
-  <header>
-    <div class="jumbotron jumbotron-fluid ">
-      <div class="container">
-        <h1 class="display-4 text-center">Weather DashBoard</h1>
-    </div>
-  </header>
+
+<body>
+    <header>
+        <div class="jumbotron jumbotron-fluid ">
+            <div class="container">
+                <h1 class="display-4 text-center">Weather DashBoard</h1>
+            </div>
+    </header>
 
 
-<main>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <div class="card mb-4">
-                    <h3 class="card-Header text-uppercase">Search For City</h3>
-                    <form id="user-form" class="card-body ">
-                        <input name="city" id="cityWeather" type="text" class="form-input mb-3"/>
-                        <button type="submit" class="btn">Search</button>
-                    </form>
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="card mb-4">
+                        <h3 class="card-Header text-uppercase">Search For City</h3>
+                        <form id="user-form" class="card-body ">
+                            <input name="city" id="cityWeather" type="text" class="form-input mb-3" />
+                            <button type="submit" class="btn">Search</button>
+                        </form>
+                    </div>
+                    <div class="card">
+                        <button class="btn">Clear History</button>
+                        <h3>Search History:</h3>
+                        <div id="search-history">
+
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <button class="btn">Clear History</button>
-                    <h3>Search History:</h3>
-                    <div id="search-history">
-
+                <div class="col-12 col-md-8">
+                    <div class="card">
+                        <ul>
+                            <li>asd</li>
+                        </ul>
+                    </div>
+                    <h1 class="mt-4">5 Day Forecast </h1>
+                    <div id="week-forecast" class="row mr-2">
+                        <div class="card col-md-3 mr-3">
+                            <ul class="">
+                                <li>adfa</li>
+                            </ul>
+                        </div>
+                        <div class="card col-md-3">
+                            <ul>
+                                <li>adfa</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-8">
-                <div class="card">
-                    <ul>
-                        <li>asd</li>
-                    </ul>
-                </div>
-                <h1 class="mt-4">5 Day Forecast </h1>
-                <div id="week-forecast"></div>
-                <div class="card col-md-3"></div>
-
-            </div>
         </div>
-    </div>
-
-    
-
-</main>
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script> -->
+    </main>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script> -->
     <script src="./assets/script.js"></script>
 </body>
+
 </html>

@@ -5,3 +5,28 @@
 ul {
     list-style-type: none;
 }
+input{
+    width: 100%
+}
+ span{
+     padding: 4px;
+     border-radius: 3px;
+ }
+.card{
+    padding:0;
+    margin:0;
+    text-align: left;
+}
+
+
+.red {
+    background-color: red;
+}
+
+.green{
+    background-color: green;
+}
+
+.yellow{
+    background-color: orange;
+}

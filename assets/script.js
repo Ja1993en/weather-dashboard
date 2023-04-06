@@ -1,6 +1,3 @@
-// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
-// var input = $('input').val
 var button = $('button')
 var apiKey = '3bfb3e5fac26e7969dbe0245cdbbfe6c'
 var date = $('.date ')
@@ -11,11 +8,14 @@ var uviEl = $(".uv-index")
 var image = $('img')
 var forecastEl = $('.forecast')
 var forcast = $("#week-forecast")
+const searchHistory = JSON.parse(localStorage.getItem('search')) || [];
 
-// console.log(forecastEl)
-
-
+// console.log(searchHistory)
+//  var searchHistory = JSON.parse(localStorage.getItem("search-results")) || [];
+// const searchHistory = [];
 var apiCall = function(e){
+    // var searchHistory = JSON.parse(localStorage.getItem("search-results")) || [];
+
     var city = $('.form-input').val()
     e.preventDefault();
     const myUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
@@ -52,9 +52,11 @@ var apiCall = function(e){
       $(".forecast").html("");
       fetch(dailyForecast)
       .then(function(response){
+
           return response.json()
       })
       .then(function(data){
+
           console.log(data)
           var forecast = data.daily[0]
           var uvIndex = forecast.uvi
@@ -70,35 +72,72 @@ var apiCall = function(e){
             $("span").addClass("red") 
           }
 
- 
 
-          forecastEl.each(function(i){
 
-            var eachEL = (forecastEl[i])
-            // $(".forecast").html("");
-            console.log(forecastEl)
-            console.log(eachEL)
-         var forecastIndex = i + 1
-          var forecastDay = data.daily[forecastIndex].dt
-       var d = new Date(forecastDay * 1000);
-      
-       var month = d.getMonth() + 1;
-       var day = d.getDate();
-       var year = d.getFullYear()
-       console.log(day)
-       console.log(day)
-         var right = `<p>${month + "/" + day + "/"+year}</p>`
-     
-    var t = $(right);
-    $(this).append(t);
-      })
 
+        
         })
+      
+        fetch(myUrl)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data)
+          forecastEl.each(function(i){
+          var forecastIndex = i * 8 + 4
+          var forecastDay = data.list[forecastIndex]
+          var forecastDate = data.list[forecastIndex].dt
 
+         var d = new Date(forecastDate * 1000);
+         var month = d.getMonth() + 1;
+         var day = d.getDate();
+         var year = d.getFullYear()
+
+         var iconApi = forecastDay.weather[0].icon
+
+         var iconLink = 'http://openweathermap.org/img/w/' + iconApi + '.png'
+         var dailyIcon = `<p><img src="${iconLink}"></p>`
+         var dailyTemp = `<p>Temp: ${forecastDay.main.temp} °F</p>`
+         var  dailyWind =  `<p>Wind: ${forecastDay.wind.speed} MPH</p>`
+         var dailyHum = `<p>Humidity: ${forecastDay.main.humidity} %</p>`
+           var dailyDate = `<p>${month} / ${day} / ${year} </p>`
+       
+     
+      $(this).append(dailyDate);
+      $(this).append(dailyIcon)
+      $(this).append(dailyTemp)
+      $(this).append(dailyWind)
+      $(this).append(dailyHum)
+          })
+          })
 
     })
 
+
+      searchHistory.unshift(city)
+   
+      searchHistory.splice(5)
+
+      localStorage.setItem('search' , JSON.stringify(searchHistory))
+
+
+
 } 
+
+console.log(localStorage.length)
+function history(){
+    var vv = searchHistory
+    for(let i=0; i< vv.length; i++){
+    var searchs = `<button class="btn border border-secondary mb-2">${searchHistory[i]}</button>`
+   $("#search-history").append(searchs)
+
+    }
+}
+history();
+
+
+  
 
 // button.click(apiCall())
 button.on('click', apiCall);

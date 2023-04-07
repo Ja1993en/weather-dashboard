@@ -1,4 +1,5 @@
-var button = $('button')
+var searchBtn = $('.searchbtn')
+var removeBtn = $('.removebtn')
 var apiKey = '3bfb3e5fac26e7969dbe0245cdbbfe6c'
 var date = $('.date ')
 var temp = $('.temp')
@@ -13,12 +14,12 @@ const searchHistory = JSON.parse(localStorage.getItem('search')) || [];
 // console.log(searchHistory)
 //  var searchHistory = JSON.parse(localStorage.getItem("search-results")) || [];
 // const searchHistory = [];
-var apiCall = function(e){
+var apiCall = function( cityName){
     // var searchHistory = JSON.parse(localStorage.getItem("search-results")) || [];
 
-    var city = $('.form-input').val()
-    e.preventDefault();
-    const myUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
+    var city = $('.form-input').val() 
+    // e.preventDefault();
+    const myUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`;
     fetch(myUrl)
     .then(function (response) {
         return response.json();
@@ -114,30 +115,49 @@ var apiCall = function(e){
 
     })
 
+    if(city==""){
 
+    }else{
       searchHistory.unshift(city)
    
       searchHistory.splice(5)
 
       localStorage.setItem('search' , JSON.stringify(searchHistory))
 
-
+    }
 
 } 
 
-console.log(localStorage.length)
-function history(){
+
+
+$(document).ready(function history(){
+    // e.preventDefualt()
+        // var city = $('.form-input').val()
     var vv = searchHistory
     for(let i=0; i< vv.length; i++){
-    var searchs = `<button class="btn border border-secondary mb-2">${searchHistory[i]}</button>`
-   $("#search-history").append(searchs)
-
+    const searches = `<button class="btn border border-secondary mb-2 remove">${searchHistory[i]}</button>`
+   $("#search-history").append(searches)
     }
+    apiCall(searchHistory[0])
+})
+
+var cityy = function(){
+    var city = $('.form-input').val() 
+    apiCall(city) 
 }
-history();
+
+var removeHistory = function(){
+    console.log('jalen')
+    localStorage.removeItem('search')
+}
+
+
+
 
 
   
 
 // button.click(apiCall())
-button.on('click', apiCall);
+searchBtn.on('click', cityy);
+removeBtn.on('click', removeHistory)
+

@@ -17,6 +17,9 @@ input{
     margin:0;
     text-align: left;
 }
+.forecast{
+    background-color: rgb(38, 176, 235);
+}
 
 
 .red {

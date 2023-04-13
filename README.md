@@ -2,11 +2,11 @@
 
 ![Project Image](./assets/img/weather.png)
 
-### Table of Contents 
+# Table of Contents 
 - [Description](#description)
-- [How To Use] (#how-to-use)
+- [Technology] (#technology)
+- [Link to My Page ](#link-to-page)
 - [Reference] (#reference)
-- [License] (license)
 - [Author] (#author-info)
 
 ---
@@ -25,3 +25,7 @@ In this project, I've created an Weather Dashboard using javasctipt. Once user s
 - Open Weather API 
 - Stack Over Flow 
 - W3 School 
+
+
+## Author 
+Jalen Mcneal @2023 All Rights Reserved 

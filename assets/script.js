@@ -125,31 +125,61 @@ var apiCall = function( cityName){
       localStorage.setItem('search' , JSON.stringify(searchHistory))
 
     }
-
+renderHistory()
 } 
+var removeHistory = function(){
+    console.log('jalen')
+    localStorage.removeItem('search')
+    $('.button-div').remove();
+    searchHistory.length = 0
+}
 
+var renderHistory = function(){
+  $(".button-div").html("")
+  var vv = searchHistory
+  for(let i=0; i< vv.length; i++){
+  const searches = `<button class="btn border border-secondary mb-2 weather-history">${searchHistory[i]}</button>`
+ $(".button-div").append(searches)
+  }
+}
 
 
 $(document).ready(function history(){
     // e.preventDefualt()
         // var city = $('.form-input').val()
-    var vv = searchHistory
-    for(let i=0; i< vv.length; i++){
-    const searches = `<button class="btn border border-secondary mb-2 remove">${searchHistory[i]}</button>`
-   $("#search-history").append(searches)
-    }
-    apiCall(searchHistory[0])
+  //       $(".button-div").html("")
+  //   var vv = searchHistory
+  //   for(let i=0; i< vv.length; i++){
+  //   const searches = `<button class="btn border border-secondary mb-2 weather-history">${searchHistory[i]}</button>`
+  //  $(".button-div").append(searches)
+  //   }
+  renderHistory()
+  $('.weather-history').on('click', function(e){
+    var currentBtn = $(e.target)
+   var  historySearch = currentBtn.text()
+   apiCall(historySearch)
+  })
 })
+//      $('.weather-history').on('click', function(e){
+//      var currentBtn = $(e.target)
+//     var  historySearch = currentBtn.text()
+//     apiCall(historySearch)
+// })
 
-var cityy = function(){
+var cityy = function(e){
+e.preventDefault()
     var city = $('.form-input').val() 
     apiCall(city) 
+
 }
 
-var removeHistory = function(){
-    console.log('jalen')
-    localStorage.removeItem('search')
-}
+
+// console.log($('.weather-history'))
+// var removeHistory = function(){
+//     console.log('jalen')
+//     localStorage.removeItem('search')
+//     $('.button-div').remove();
+// }
 
 
 
@@ -159,5 +189,4 @@ var removeHistory = function(){
 
 // button.click(apiCall())
 searchBtn.on('click', cityy);
-removeBtn.on('click', removeHistory)
-
+removeBtn.on('click', removeHistory);

@@ -11,11 +11,8 @@ var forecastEl = $('.forecast')
 var forcast = $("#week-forecast")
 const searchHistory = JSON.parse(localStorage.getItem('search')) || [];
 
-// console.log(searchHistory)
-//  var searchHistory = JSON.parse(localStorage.getItem("search-results")) || [];
-// const searchHistory = [];
 var apiCall = function( cityName){
-    // var searchHistory = JSON.parse(localStorage.getItem("search-results")) || [];
+   
 
     var city = $('.form-input').val() 
     // e.preventDefault();
@@ -121,60 +118,62 @@ var apiCall = function( cityName){
       searchHistory.unshift(city)
    
       searchHistory.splice(5)
+      console.log(searchHistory)
 
       localStorage.setItem('search' , JSON.stringify(searchHistory))
-
+      renderHistory()
     }
-renderHistory()
+
 } 
 var removeHistory = function(){
     console.log('jalen')
-    localStorage.removeItem('search')
-    $('.button-div').remove();
+    localStorage.clear()
+    // $('.button-div').remove();
     searchHistory.length = 0
+   renderHistory()
 }
 
 var renderHistory = function(){
   $(".button-div").html("")
-  var vv = searchHistory
-  for(let i=0; i< vv.length; i++){
+  for(let i=0; i< searchHistory.length; i++){
   const searches = `<button class="btn border border-secondary mb-2 weather-history">${searchHistory[i]}</button>`
  $(".button-div").append(searches)
-  }
+
+  
+}
+$('.weather-history').on('click', function(e){
+  var currentBtn = $(e.target)
+      var  historySearch = currentBtn.text()
+     apiCall(historySearch)
+  })
 }
 
 
 $(document).ready(function history(){
-    // e.preventDefualt()
-        // var city = $('.form-input').val()
-  //       $(".button-div").html("")
-  //   var vv = searchHistory
-  //   for(let i=0; i< vv.length; i++){
-  //   const searches = `<button class="btn border border-secondary mb-2 weather-history">${searchHistory[i]}</button>`
-  //  $(".button-div").append(searches)
-  //   }
-  renderHistory()
-  $('.weather-history').on('click', function(e){
-    var currentBtn = $(e.target)
-   var  historySearch = currentBtn.text()
-   apiCall(historySearch)
-  })
-})
+//     // e.preventDefualt()
+//         // var city = $('.form-input').val()
+//         $(".button-div").html("")
+//     var vv = searchHistory
+//     for(let i=0; i< vv.length; i++){
+//     const searches = `<button class="btn border border-secondary mb-2 weather-history">${searchHistory[i]}</button>`
+//    $(".button-div").append(searches)
+//     }
+// })
 //      $('.weather-history').on('click', function(e){
 //      var currentBtn = $(e.target)
 //     var  historySearch = currentBtn.text()
 //     apiCall(historySearch)
-// })
+
+})
 
 var cityy = function(e){
 e.preventDefault()
     var city = $('.form-input').val() 
     apiCall(city) 
-
 }
 
-
-// console.log($('.weather-history'))
+renderHistory();
+console.log($('.weather-history'))
 // var removeHistory = function(){
 //     console.log('jalen')
 //     localStorage.removeItem('search')
@@ -186,7 +185,7 @@ e.preventDefault()
 
 
   
-
+// cc()
 // button.click(apiCall())
 searchBtn.on('click', cityy);
 removeBtn.on('click', removeHistory);

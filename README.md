@@ -3,11 +3,11 @@
 ![Project Image](./assets/img/weather.png)
 
 # Table of Contents 
-- [Description](#description)
-- [Technology] (#technology)
-- [Link to My Page ](#link-to-page)
-- [Reference] (#references)
-- [Author] (#author)
+* [Description](#description)
+* [Technology] (#technology)
+* [Link to My Page ](#link-to-page)
+* [Reference] (#references)
+* [Author] (#author)
 
 ---
 ## Description
